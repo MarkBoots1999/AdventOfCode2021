@@ -59,7 +59,7 @@ def coordinate_organizer(line):
     return (x1, y1, x2, y2)
 
 # Open data and put in list 
-with open("Day5/data_day5.txt", "r") as file:
+with open("data_day5.txt", "r") as file:
     data = [coordinate_organizer(line) for line in file.readlines()] 
 
 # Use Grid() for part 1, use Grid(True) for part 2: to include diagonals             
