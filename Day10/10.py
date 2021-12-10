@@ -11,17 +11,21 @@ match_score = {")": 3,
                "}": 1197,
                ">": 25137}
 
-stack = []
+
 score = 0
 
 for line in data:
+    stack = [] # Ignore incomplete lines by resetting them every iteration
     for sign in line:
+        #print(stack)
         if sign in "([{<":
             stack.append(sign)
         else:
-            if stack == None or stack[-1] != allowed_match.get(sign):
-                print(allowed_match.get_key(sign))
-                score += match_score[sign] 
-            else:
+            if sign == allowed_match[stack[-1]]: #stack == None or 
+                #print(f"closed {allowed_match[stack[-1]]}")
                 stack.pop()
-    break
+            elif stack == None or sign != allowed_match[stack[-1]]:
+                #print(f"{sign} error")    
+                score += match_score[sign]
+                break # Break after first error in line
+print(score)
